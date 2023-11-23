@@ -1,0 +1,40 @@
+name: "Ruby on Rails unit tests"
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  DB_USERNAME: myuser
+  DB_PASSWORD: mypassword
+  DB_NAME: chefscompanion_test
+  DATABASE_URL: postgres://myuser:mypassword@localhost:5432/chefscompanion_test
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11-alpine
+        ports:
+          - "5432:5432"
+        env:
+          POSTGRES_DB: $DB_NAME
+          POSTGRES_USER: $DB_USERNAME
+          POSTGRES_PASSWORD: $DB_PASSWORD
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: "postgres://$DB_USERNAME:$DB_PASSWORD@localhost:5432/$DB_NAME"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Install Ruby and gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      # Add or replace database setup steps here
+      - name: Set up database schema
+        run: bin/rails db:schema:load
+      # Add or replace test runners here
+      - name: Run tests
+        run: bin/bundle exec rspec

@@ -1,5 +1,15 @@
 [![Ruby on Rails unit tests](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/specs.yml/badge.svg)](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/specs.yml)
 
+[![fly deploy](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml/badge.svg)](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml)
+
+Continuous deployment on main merges to https://chefscompanion.fly.dev
+
+## Dev
+
+- `bundle install`
+- Install foreman `gem install foreman` ([do not add as a dependency](https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman))
+- Start the app with `foreman start -f Procfile.dev` 
+
 ## Problem statement
 
 > **It's dinner time ! Create an application that helps users find the most relevant recipes that they can prepare with the ingredients that they have at home**

@@ -75,3 +75,5 @@ gem "sentry-rails", "~> 5.13"
 gem "rspec-rails", "~> 6.1", :groups => [:development, :test]
 
 gem "vite_rails", "~> 3.0"
+
+gem "guard-rspec", "~> 4.7", :group => :development

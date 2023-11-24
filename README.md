@@ -7,7 +7,7 @@ Continuous deployment on main merges to https://chefscompanion.fly.dev
 ## Dev
 
 - `bundle install`
-- Install foreman `gem install foreman`
+- Install foreman `gem install foreman` ([do not add as a dependency](https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman))
 - Start the app with `foreman start -f Procfile.dev` 
 
 ## Problem statement

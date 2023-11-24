@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Chefscompanion</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,7 +8,6 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= vite_client_tag %>
-    <%= vite_javascript_tag 'application' %>
     <!--
       If using a TypeScript entrypoint file:
         vite_typescript_tag 'application'
@@ -23,5 +22,9 @@
 
   <body>
     <%= yield %>
+    <main id="app">
+      <!-- react root -->
+    </main>
+    <%= vite_javascript_tag 'application.tsx' %>
   </body>
 </html>

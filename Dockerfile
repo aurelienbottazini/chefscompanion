@@ -26,6 +26,25 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential libpq-dev
 
+# install node
+RUN apt-get update && apt-get install -y \
+  ca-certificates \
+  curl
+
+ARG NODE_VERSION=20.10.0
+ARG NODE_PACKAGE=node-v$NODE_VERSION-linux-x64
+ARG NODE_HOME=/opt/$NODE_PACKAGE
+
+ENV NODE_PATH $NODE_HOME/lib/node_modules
+ENV PATH $NODE_HOME/bin:$PATH
+
+RUN curl https://nodejs.org/dist/v$NODE_VERSION/$NODE_PACKAGE.tar.gz | tar -xzC /opt/
+
+
+# install npm packages
+COPY --link package.json package-lock.json ./
+RUN npm install
+
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install && \

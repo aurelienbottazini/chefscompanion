@@ -2,13 +2,19 @@
 
 [![fly deploy](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml/badge.svg)](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml)
 
-Continuous deployment on main merges to https://chefscompanion.fly.dev
+Continuous deployment on merges to main -> https://chefscompanion.fly.dev
 
 ## Dev
 
-- `bundle install`
+- Install dependencies `bundle install` and `npm install`
 - Install foreman `gem install foreman` ([do not add as a dependency](https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman))
 - Start the app with `foreman start -f Procfile.dev`
+- Run specs with `bundle exec rspec`
+- Watch specs with `bundle exec guard`
+
+## Architecture
+
+[architecture.md](./architecture.md)
 
 ## Problem statement
 

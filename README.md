@@ -2,13 +2,19 @@
 
 [![fly deploy](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml/badge.svg)](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml)
 
-Continuous deployment on main merges to https://chefscompanion.fly.dev
+Continuous deployment on merges to main -> https://chefscompanion.fly.dev
 
 ## Dev
 
-- `bundle install`
+- Install dependencies `bundle install` and `npm install`
 - Install foreman `gem install foreman` ([do not add as a dependency](https://github.com/ddollar/foreman/wiki/Don't-Bundle-Foreman))
-- Start the app with `foreman start -f Procfile.dev` 
+- Start the app with `foreman start -f Procfile.dev`
+- Run specs with `bundle exec rspec`
+- Watch specs with `bundle exec guard`
+
+## Architecture
+
+[architecture.md](./architecture.md)
 
 ## Problem statement
 
@@ -27,12 +33,12 @@ We expect to use this prototype as a starting point to discuss current implenent
 
 #### Tech must-haves
 - [X] MySQL / PostgreSQL or any other MySQL-compatible database.
-- [ ] A backend application which responds to queries
-- [ ] A web interface (can be VERY simple)
+- [X] A backend application which responds to queries
+- [X] A web interface (can be VERY simple)
 - [X] Ruby on Rails (if you're not familiar with Ruby on Rails, use something you're familiar with)
 
 #### Bonus points
-- [ ] React
+- [X] React
 - [X] Application is hosted on fly.io
 
 ## Data

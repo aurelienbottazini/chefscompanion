@@ -73,4 +73,6 @@ body {
 
 #recipe button {
     grid-area: close;
+    height: 4rem;
+    align-self: end;
 }

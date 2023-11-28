@@ -4,4 +4,12 @@ class Recipe < ApplicationRecord
   validates :prep_time, presence: true
   validates :ratings, presence: true
   validates :image_url, presence: true
+  validates :ingredients, presence: true
+
+
+  has_and_belongs_to_many :ingredients
+  belongs_to :category, optional: true
+
+  accepts_nested_attributes_for :ingredients
+  accepts_nested_attributes_for :category
 end

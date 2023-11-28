@@ -48,16 +48,23 @@ function RecipeDisplay({recipe, dialogRef}) {
         dialogRef.current.close();
     };
     return (
-        <dialog id="recipe" ref={dialogRef} >
-            <h1>{recipe.title}</h1>
-            <img src={recipe.image_url} width="100px" alt={recipe.title}/>
-            <ul>
-                <li>Prep: {recipe.prep_time}</li>
-                <li>Cook: {recipe.cook_time}</li>
-                <li>Ratings: {recipe.ratings}</li>
+        <dialog ref={dialogRef} >
+            <section id="recipe">
+                <h1>{recipe.title}</h1>
+                <img src={recipe.image_url} width="100px" alt={recipe.title}/>
+                <ul id="instructions">
+                    <li>Prep: {recipe.prep_time}</li>
+                    <li>Cook: {recipe.cook_time}</li>
+                    <li>Ratings: {recipe.ratings}</li>
 
-            </ul>
-            <button onClick={closeDialog}>Close X</button>
+                </ul>
+                <ul id="ingredients">
+                    <li>Prep: {recipe.prep_time}</li>
+                    <li>Cook: {recipe.cook_time}</li>
+                    <li>Ratings: {recipe.ratings}</li>
+                </ul>
+                <button onClick={closeDialog}>Close X</button>
+            </section>
         </dialog>);
 }
 function RecipesList({recipes, dialogRef, setRecipe}) {

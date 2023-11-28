@@ -46,3 +46,31 @@ body {
 #recipes li:nth-child(odd), #recipe li:nth-child(odd) {
     background-color: #eee;
 }
+
+#recipe {
+    display: grid;
+    grid-template-areas:
+    "title title title title"
+    "image instructions ingredients ingredients"
+    "close instructions ingredients ingredients"
+}
+
+#recipe h1 {
+    grid-area: title;
+}
+
+#recipe img {
+    grid-area: image;
+}
+
+#recipe #instructions {
+    grid-area: instructions;
+}
+
+#recipe #ingredients {
+    grid-area: ingredients;
+}
+
+#recipe button {
+    grid-area: close;
+}

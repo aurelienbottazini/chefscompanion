@@ -7,6 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css" type="text/css">
+
+    <%= vite_javascript_tag 'application.tsx' %>
     <%= vite_client_tag %>
     <!--
       If using a TypeScript entrypoint file:
@@ -21,10 +24,11 @@
   </head>
 
   <body>
+  <main id="app">
     <%= yield %>
-    <main id="app">
+    <section id="react">
       <!-- react root -->
-    </main>
-    <%= vite_javascript_tag 'application.tsx' %>
+    </section>
+  </main>
   </body>
 </html>

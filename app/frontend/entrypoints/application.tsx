@@ -30,13 +30,23 @@ import { createRoot } from 'react-dom/client';
 // Example: Import a stylesheet in app/frontend/index.css
 import '~/application.css'
 
-function Greeting({ name }) {
-    return <h1>Hello, {name}</h1>;
+function SearchBar() {
+    return <input type='search' id="search" placeholder="search recipes" />;
+}
+
+function RecipesList() {
+    return <ul id="recipes">
+    </ul>;
+
 }
 
 export default function App() {
-    return <Greeting name="world" />
+    return (
+        <>
+            <SearchBar />
+            <RecipesList />
+        </>)
 }
 
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('react'));
 root.render(App());

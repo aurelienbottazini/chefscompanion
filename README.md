@@ -25,9 +25,21 @@ Connect to the database using your regular tools
 
 ![db schema](./resources/db-schema.png)
 
-## Architecture
+## User stories 
 
-[architecture.md](./architecture.md)
+Project managed with https://github.com/users/aurelienbottazini/projects/2/views/1
+
+User stories completed:
+- As cook I want to filter recipes by ingredient
+- As cook I want to be able to query with a list of words against the list of recipes and get the best possible matches
+
+## Notes
+
+- there is a `rake recipes:seed` task to seed the database with the recipes. It is fast enough for now (17s), but it could be improved by using a bulk insert strategy with prepared statements.
+- I did not focus on testing the app. In the limited time I had, I think it was more important to setup continuous deployment and to use React for the views. 
+- ideas for improvements:
+  - fuzzy search ingredients (with postgres `fuzzystrmatch` extension)
+  - see a cloud of most common ingredients when the search bar is empty
 
 ## Problem statement
 

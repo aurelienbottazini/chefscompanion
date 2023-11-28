@@ -32,8 +32,6 @@ module Recipes
   class Seed < Rake::Task
     def needed?
       Recipe.count.zero?
-
-      true
     end
 
     def execute(args=nil)

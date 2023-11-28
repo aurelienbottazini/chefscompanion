@@ -1,4 +1,9 @@
 class Recipe < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :full_search_against_ingredients, associated_against: {
+    ingredients: [:full_text],
+  }
+
   validates :title, presence: true
   validates :cook_time, presence: true
   validates :prep_time, presence: true
@@ -12,4 +17,5 @@ class Recipe < ApplicationRecord
 
   accepts_nested_attributes_for :ingredients
   accepts_nested_attributes_for :category
+
 end

@@ -81,3 +81,5 @@ gem "guard-rspec", "~> 4.7", :group => :development
 gem "factory_bot_rails", "~> 6.4", :groups => [:development, :test]
 
 gem "shoulda-matchers", "~> 5.3", :group => :test
+
+gem "pg_search", "~> 2.3"

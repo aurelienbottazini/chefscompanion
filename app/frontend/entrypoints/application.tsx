@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import useDebounce from '..//hooks/useDebounce';
 import {createRoot} from 'react-dom/client';
 
@@ -42,16 +42,40 @@ function SearchBar({handleSearch}) {
                   onChange={(e) => setSearchTerm(e.target.value)}/>;
 }
 
-function RecipesList({recipes}) {
-    const lis = recipes.map((recipe) => <li key={recipe.id}>{recipe.title}</li>)
+function RecipeDisplay({recipe, dialogRef}) {
+
+    const closeDialog = () => {
+        dialogRef.current.close();
+    };
+    return (
+        <dialog id="recipe" ref={dialogRef} >
+            <h1>{recipe.title}</h1>
+            <img src={recipe.image_url} width="100px" alt={recipe.title}/>
+            <ul>
+                <li>Prep: {recipe.prep_time}</li>
+                <li>Cook: {recipe.cook_time}</li>
+                <li>Ratings: {recipe.ratings}</li>
+
+            </ul>
+            <button onClick={closeDialog}>Close X</button>
+        </dialog>);
+}
+function RecipesList({recipes, dialogRef, setRecipe}) {
+    const setRecipeAndOpenDialog = (recipe) => {
+        setRecipe(recipe);
+        dialogRef.current.showModal();
+    };
+
+    const lis = recipes.map((recipe) => <li onClick={() => setRecipeAndOpenDialog(recipe)} key={recipe.id}>{recipe.title}</li>)
     return <ul id="recipes">
         {lis}
     </ul>;
-
 }
 
 export default function App() {
     const [recipes, setRecipes] = useState([]);
+    const [recipe, setRecipe] = useState({});
+    const dialog = useRef(null);
 
     function updateRecipes(recipes) {
         recipes.json().then((x) => setRecipes(x.recipes));
@@ -59,8 +83,9 @@ export default function App() {
 
     return (
         <>
+            <RecipeDisplay recipe={recipe} dialogRef={dialog}/>
             <SearchBar handleSearch={updateRecipes}/>
-            <RecipesList recipes={recipes}/>
+            <RecipesList recipes={recipes} dialogRef={dialog} setRecipe={setRecipe} />
         </>)
 }
 

@@ -31,6 +31,7 @@ module Recipes
 
   class Seed < Rake::Task
     def needed?
+      return if Rails.env == 'test'
       Recipe.count.zero?
     end
 

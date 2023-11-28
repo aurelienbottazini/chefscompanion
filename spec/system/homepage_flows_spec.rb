@@ -7,6 +7,6 @@ RSpec.describe "HomepageFlows", type: :system do
 
   it "works! (now write some real specs)" do
     visit "/"
-    expect(page).to have_css('.logo')
+    expect(page).to have_css('#logo')
   end
 end

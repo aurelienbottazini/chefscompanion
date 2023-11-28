@@ -35,6 +35,16 @@ export function SearchBar({handleSearch}) {
         fetchRecipes();
     }, [debouncedSearchTerm])
 
-    return <input type='search' id="search" placeholder="search recipes" value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}/>;
+    return (
+        <>
+            <input type='search' id="search" placeholder="search recipes" value={searchTerm}
+                   onChange={(e) => setSearchTerm(e.target.value)}/>
+            <Loader loading={isLoading} />
+        </>);
+}
+
+function Loader({ loading }) {
+    if(!loading) return null;
+
+    return <span className="loader"></span>;
 }

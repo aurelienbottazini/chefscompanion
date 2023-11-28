@@ -21,7 +21,7 @@ function SearchBar({handleSearch}) {
 
             try {
 
-                const recipes = await fetch(`http://localhost:5100/ingredients_search/create?ingredients=${encodeURIComponent(searchTerm)}`)
+                const recipes = await fetch(`/ingredients_search/create?ingredients=${encodeURIComponent(searchTerm)}`)
 
                 if (!recipes.ok) {
                     throw new Error('Error fetching recipes, network response is invalid.')

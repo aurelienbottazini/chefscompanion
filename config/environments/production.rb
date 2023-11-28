@@ -1,5 +1,7 @@
 require "active_support/core_ext/integer/time"
 
+ENV["RAILS_URL"] = "https://chefscompanion.fly.dev/"
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

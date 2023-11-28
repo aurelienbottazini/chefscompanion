@@ -2,7 +2,6 @@
 
 [![fly deploy](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml/badge.svg)](https://github.com/aurelienbottazini/chefscompanion/actions/workflows/deploy.yml)
 
-Continuous deployment on merges to main -> https://chefscompanion.fly.dev
 
 ## Dev
 
@@ -11,6 +10,16 @@ Continuous deployment on merges to main -> https://chefscompanion.fly.dev
 - Start the app with `foreman start -f Procfile.dev`
 - Run specs with `bundle exec rspec`
 - Watch specs with `bundle exec guard`
+
+## Prod
+
+Continuous deployment on merges to main -> https://chefscompanion.fly.dev
+
+Create a proxy to the database:
+
+    fly proxy 5432:5432 -a chefscompanion-db
+
+Connect to the database using your regular tools
 
 ## Architecture
 

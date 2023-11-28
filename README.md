@@ -21,6 +21,10 @@ Create a proxy to the database:
 
 Connect to the database using your regular tools
 
+## db schema
+
+![db schema](./resources/db-schema.png)
+
 ## Architecture
 
 [architecture.md](./architecture.md)

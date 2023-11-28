@@ -66,7 +66,7 @@ function RecipesList({recipes, dialogRef, setRecipe}) {
         dialogRef.current.showModal();
     };
 
-    const lis = recipes.map((recipe) => <li onClick={() => setRecipeAndOpenDialog(recipe)} key={recipe.id}>{recipe.title}</li>)
+    const lis = recipes.map((recipe) => <li onClick={() => setRecipeAndOpenDialog(recipe)} key={`recipesList-${recipe.id}`}>{recipe.title}</li>)
     return <ul id="recipes">
         {lis}
     </ul>;

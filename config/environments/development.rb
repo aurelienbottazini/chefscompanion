@@ -1,5 +1,5 @@
 require "active_support/core_ext/integer/time"
-
+ENV["RAILS_URL"] = "http://localhost:5100/"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 

@@ -1,42 +1,27 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import React, {useRef, useState} from 'react';
+import {createRoot} from 'react-dom/client';
 
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-// console.log('Vite ⚡️ Rails')
-
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
-
-// console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
 import '~/application.css'
-
-function Greeting({ name }) {
-    return <h1>Hello, {name}</h1>;
-}
+import {RecipesList} from "../components/recipesList";
+import {RecipeDisplay} from "../components/recipeDisplay";
+import {SearchBar} from "../components/searchBar";
 
 export default function App() {
-    return <Greeting name="world" />
+    const [recipes, setRecipes] = useState([]);
+    const [recipe, setRecipe] = useState({});
+    const dialog = useRef(null);
+
+    function updateRecipes(recipes) {
+        recipes.json().then((x) => setRecipes(x.recipes));
+    }
+
+    return (
+        <>
+            <RecipeDisplay recipe={recipe} dialogRef={dialog}/>
+            <SearchBar handleSearch={updateRecipes}/>
+            <RecipesList recipes={recipes} dialogRef={dialog} setRecipe={setRecipe} />
+        </>)
 }
 
-const root = createRoot(document.getElementById('app'));
-root.render(App());
+const root = createRoot(document.getElementById('react'));
+root.render(<App/>);

@@ -1,52 +1,68 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
+import React, {useEffect, useState} from 'react';
+import useDebounce from '..//hooks/useDebounce';
+import {createRoot} from 'react-dom/client';
 
-// To see this message, add the following to the `<head>` section in your
-// views/layouts/application.html.erb
-//
-//    <%= vite_client_tag %>
-//    <%= vite_javascript_tag 'application' %>
-// console.log('Vite ⚡️ Rails')
-
-// If using a TypeScript entrypoint file:
-//     <%= vite_typescript_tag 'application' %>
-//
-// If you want to use .jsx or .tsx, add the extension:
-//     <%= vite_javascript_tag 'application.jsx' %>
-
-// console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
-
-// Example: Load Rails libraries in Vite.
-//
-// import * as Turbo from '@hotwired/turbo'
-// Turbo.start()
-//
-// import ActiveStorage from '@rails/activestorage'
-// ActiveStorage.start()
-//
-// // Import all channels.
-// const channels = import.meta.globEager('./**/*_channel.js')
-
-// Example: Import a stylesheet in app/frontend/index.css
 import '~/application.css'
 
-function SearchBar() {
-    return <input type='search' id="search" placeholder="search recipes" />;
+function SearchBar({handleSearch}) {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const debouncedSearchTerm = useDebounce(searchTerm, 300);
+
+    useEffect(() => {
+        if (!debouncedSearchTerm) return;
+        if (searchTerm.length < 3) return;
+
+        const fetchRecipes = async () => {
+            setIsLoading(true);
+            setError(null);
+
+            try {
+
+                const recipes = await fetch(`http://localhost:5100/ingredients_search/create?ingredients=${encodeURIComponent(searchTerm)}`)
+
+                if (!recipes.ok) {
+                    throw new Error('Error fetching recipes, network response is invalid.')
+                }
+
+                handleSearch(recipes);
+            } catch (error) {
+                setError(error.message)
+            } finally {
+                setIsLoading(false);
+            }
+        }
+
+        fetchRecipes();
+    }, [debouncedSearchTerm])
+
+    return <input type='search' id="search" placeholder="search recipes" value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}/>;
 }
 
-function RecipesList() {
+function RecipesList({recipes}) {
+    const lis = recipes.map((recipe) => <li key={recipe.id}>{recipe.title}</li>)
     return <ul id="recipes">
+        {lis}
     </ul>;
 
 }
 
 export default function App() {
+    const [recipes, setRecipes] = useState([]);
+
+    function updateRecipes(recipes) {
+        recipes.json().then((x) => setRecipes(x.recipes));
+    }
+
     return (
         <>
-            <SearchBar />
-            <RecipesList />
+            <SearchBar handleSearch={updateRecipes}/>
+            <RecipesList recipes={recipes}/>
         </>)
 }
 
 const root = createRoot(document.getElementById('react'));
-root.render(App());
+root.render(<App/>);

@@ -1,0 +1,2 @@
+module IngredientsSearchHelper
+end

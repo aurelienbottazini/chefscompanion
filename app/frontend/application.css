@@ -17,10 +17,24 @@
 
 #search {
     grid-area: search;
-    width: 100%;
+    width: 60vw;
 }
 
 #recipes {
     grid-area: recipes;
+    width: 60vw;
+    margin: 0;
+    padding: 0;
+}
+
+#recipes li {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+#recipes li:nth-child(odd) {
+    background-color: #eee;
 }
 

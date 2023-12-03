@@ -84,7 +84,5 @@ wget https://pennylane-interviewing-assets-20220328.s3.eu-west-1.amazonaws.com/r
 
 ## Deliverable
 - the 2-3 user stories which the application implements
-- the codebase : in a git repo (share it with @quentindemetz @tdeo @soyoh @lucasbonin @sforsell @clemalfroy @dmilon @pointcom @evangelos-fotis @thecodehunter)
 - the database structure
 - the application, running on fly.io or on a personal server.
-- please submit links to the GitHub repo and the hosted application [via this form](https://forms.gle/siH7Rezuq2V1mUJGA) and if you're on Mac, make sure your browser has permission to share the screen

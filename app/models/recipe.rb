@@ -1,8 +1,14 @@
 class Recipe < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :full_search_against_ingredients, associated_against: {
-    ingredients: [:full_text],
-  }
+  pg_search_scope :full_search_against_ingredients,
+                  associated_against: {
+                    ingredients: [:full_text],
+                  },
+                  using: {
+                    :trigram => {:threshold => 0.1},
+                    :dmetaphone => {:any_word => true, :sort_only => true},
+                    :tsearch => { :prefix => true }
+                  }
 
   validates :title, presence: true
   validates :cook_time, presence: true

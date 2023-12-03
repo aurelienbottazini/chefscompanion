@@ -17,9 +17,15 @@ Continuous deployment on merges to main -> https://chefscompanion.fly.dev
 
 Create a proxy to the database:
 
-    fly proxy 5432:5432 -a chefscompanion-db
+    fly proxy 5433:5432 -a chefscompanion-db
 
 Connect to the database using your regular tools
+
+You need those extensions enabled:
+
+    CREATE EXTENSION fuzzystrmatch; 
+    CREATE EXTENSION pg_trgm; 
+    CREATE EXTENSION unaccent;
 
 ## db schema
 

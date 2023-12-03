@@ -2,7 +2,7 @@ name: fly deploy
 
 on:
   workflow_run:
-    workflows: [ "Ruby on Rails specs" ]
+    workflows: [ "unit specs" ]
     branches:
       - main
     types:
